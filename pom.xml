@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>user</artifactId>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <groupId>org.springframework.boot</groupId>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>core</artifactId>
+      <groupId>com.marshall.sky</groupId>
+      <version>1.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+  <description>Demo project for Spring Boot</description>
+  <groupId>com.marshall.sky</groupId>
+  <modelVersion>4.0.0</modelVersion>
+  <name>user</name>
+
+  <parent>
+    <artifactId>core</artifactId>
+    <groupId>com.marshall.sky</groupId>
+    <relativePath/>
+    <version>1.0.1-SNAPSHOT</version> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <java.version>1.8</java.version>
+  </properties>
+
+
+  <version>1.0.1-SNAPSHOT</version>
+
+</project>
