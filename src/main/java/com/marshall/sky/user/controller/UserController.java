@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,15 +19,16 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  @PostMapping("/create")
-  public boolean create(String nickName, GenderEnum gender, StatusEnum status, Long avatarId) {
+  @PostMapping("/create.json")
+  public boolean create(@RequestParam(name = "nick_name") String nickName, GenderEnum gender,
+      StatusEnum status, @RequestParam(name = "avatar_id") Long avatarId) {
     return userService.create(
         UserInfo.builder().nickName(nickName).userId(System.currentTimeMillis()).avatarId(avatarId)
             .gender(gender).status(status)
             .build());
   }
 
-  @GetMapping("/list")
+  @GetMapping("/list.json")
   public List<UserInfo> list(int page, int count) {
     return userService.list(page * count, count);
   }
