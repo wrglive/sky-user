@@ -56,7 +56,7 @@ public class UserRedisManageImpl implements UserRedisManage {
 
   @Override
   public long buildUserId() {
-    Long buildCount = redisString().increment(BUILD_USER_COUNT_KEY);
+    Long buildCount = redisString().increment(BUILD_USER_COUNT_KEY, 1L);
     redisTemplate.expire(BUILD_USER_COUNT_KEY, 1000, TimeUnit.MILLISECONDS);
     return System.currentTimeMillis() * 1000 + buildCount;
   }
