@@ -17,5 +17,6 @@ public class UserInfo {
   String nickName;
   GenderEnum gender;
   StatusEnum status;
+  Long createAt;
   Long avatarId;
 }

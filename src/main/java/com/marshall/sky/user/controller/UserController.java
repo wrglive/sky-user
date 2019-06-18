@@ -23,14 +23,23 @@ public class UserController {
   public boolean create(@RequestParam(name = "nick_name") String nickName, GenderEnum gender,
       StatusEnum status, @RequestParam(name = "avatar_id") Long avatarId) {
     return userService.create(
-        UserInfo.builder().nickName(nickName).userId(System.currentTimeMillis()).avatarId(avatarId)
+        UserInfo
+            .builder()
+            .nickName(nickName)
+            .userId(System.currentTimeMillis())
+            .avatarId(avatarId)
             .gender(gender).status(status)
             .build());
   }
 
   @GetMapping("/list.json")
   public List<UserInfo> list(int page, int count) {
-    return userService.list(page * count, count);
+    return userService.list(page, count);
+  }
+
+  @GetMapping("/get.json")
+  public UserInfo get(long id) {
+    return userService.getById(id).orElse(null);
   }
 
 }
