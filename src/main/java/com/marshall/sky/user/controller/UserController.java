@@ -26,7 +26,7 @@ public class UserController {
         UserInfo
             .builder()
             .nickName(nickName)
-            .userId(System.currentTimeMillis())
+            .userId(userService.buildUserId())
             .avatarId(avatarId)
             .gender(gender).status(status)
             .build());

@@ -1,5 +1,6 @@
 package com.marshall.sky.user.service;
 
+import com.google.common.collect.Lists;
 import com.marshall.sky.user.mapper.UserMapper;
 import com.marshall.sky.user.model.UserInfo;
 import java.util.Collection;
@@ -18,7 +19,11 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public boolean create(UserInfo userInfo) {
+    userInfo.setCreateAt(System.currentTimeMillis());
     boolean rst = userMapper.create(userInfo);
+    if (rst) {
+      userRedisManage.create(userInfo);
+    }
     return rst;
   }
 
@@ -34,7 +39,8 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public Optional<UserInfo> getById(long userId) {
-    return Optional.ofNullable(userMapper.getById(userId));
+    return userRedisManage.multiGet(Lists.newArrayList(userId))
+        .stream().findFirst();
   }
 
   @Override
