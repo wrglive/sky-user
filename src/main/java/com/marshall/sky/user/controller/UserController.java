@@ -2,6 +2,8 @@ package com.marshall.sky.user.controller;
 
 import com.marshall.sky.core.enums.GenderEnum;
 import com.marshall.sky.core.enums.StatusEnum;
+import com.marshall.sky.core.exception.SkyException;
+import com.marshall.sky.user.exception.SkyUserExceptionEnum;
 import com.marshall.sky.user.model.UserInfo;
 import com.marshall.sky.user.service.UserService;
 import java.util.List;
@@ -39,7 +41,7 @@ public class UserController {
 
   @GetMapping("/get.json")
   public UserInfo get(long id) {
-    return userService.getById(id).orElse(null);
+    return userService.getById(id).orElseThrow(() -> new SkyException(SkyUserExceptionEnum.USER_IS_EXIST));
   }
 
 }

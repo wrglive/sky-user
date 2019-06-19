@@ -4,7 +4,9 @@ import com.marshall.sky.core.exception.ExFactor;
 import com.marshall.sky.core.exception.SkyExceptionMsgModel;
 
 public enum SkyUserExceptionEnum implements ExFactor {
-  DEFAULT(1, "default error", "默认异常");
+  DEFAULT(1, "default error", "默认异常"),
+  USER_IS_EXIST(2, "user is exist", "用户不存在鸭。"),
+  ;
 
   int errorIndex;
   String errorCode;
