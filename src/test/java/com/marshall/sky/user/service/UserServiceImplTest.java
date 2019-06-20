@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-@DisplayName("用户的测试")
+@DisplayName("用户的测试用例")
 public class UserServiceImplTest extends BaseServiceTest {
 
   @InjectMocks
