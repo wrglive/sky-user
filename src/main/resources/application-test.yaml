@@ -10,6 +10,12 @@ mybatis:
 spring:
   application:
     name: sky-cloud-user
+  data:
+    elasticsearch:
+      cluster-name: my-application
+      cluster-nodes: 47.105.157.44:9300
+      repositories:
+        enabled: true
   jackson:
     property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
   datasource:

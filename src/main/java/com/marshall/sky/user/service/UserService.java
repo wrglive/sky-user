@@ -11,6 +11,8 @@ public interface UserService {
 
   List<UserInfo> list(int page, int count);
 
+  List<Long> search(String keyword, int page, int count);
+
   List<UserInfo> multiGet(Collection<Long> ids);
 
   Optional<UserInfo> getById(long userId);

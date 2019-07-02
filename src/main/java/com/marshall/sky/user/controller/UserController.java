@@ -39,6 +39,11 @@ public class UserController {
     return userService.list(page, count);
   }
 
+  @GetMapping("/search.json")
+  public List<Long> search(String keyword, int page, int count) {
+    return userService.search(keyword, page, count);
+  }
+
   @GetMapping("/get.json")
   public UserInfo get(long id) {
     return userService.getById(id).orElseThrow(() -> new SkyException(SkyUserExceptionEnum.USER_IS_EXIST));
