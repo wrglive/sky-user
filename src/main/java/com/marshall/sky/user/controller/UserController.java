@@ -40,8 +40,8 @@ public class UserController {
   }
 
   @GetMapping("/search.json")
-  public List<Long> search(String keyword, int page, int count) {
-    return userService.search(keyword, page, count);
+  public List<UserInfo> search(String keyword, int page, int count) {
+    return userService.multiGet(userService.search(keyword, page, count));
   }
 
   @GetMapping("/get.json")

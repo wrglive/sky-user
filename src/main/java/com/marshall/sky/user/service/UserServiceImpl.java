@@ -8,9 +8,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,9 +43,12 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public List<Long> search(String keyword, int page, int count) {
-    QueryBuilder queryBuilder = QueryBuilders
-        .multiMatchQuery(keyword, new String[]{"user_id", "nick_name"});
-    Iterable<UserInfoSearch> userInfoSearchIterable = searchService.search(queryBuilder);
+    NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
+    NativeSearchQuery nativeSearchQuery = builder.withFields("user_id", "nick_name")
+        .withSearchType(SearchType.DFS_QUERY_THEN_FETCH)
+        .withQuery(QueryBuilders.queryStringQuery(keyword))
+        .build();
+    Iterable<UserInfoSearch> userInfoSearchIterable = searchService.search(nativeSearchQuery);
     return Lists.newArrayList(userInfoSearchIterable)
         .stream()
         .map(UserInfoSearch::getUserId)
