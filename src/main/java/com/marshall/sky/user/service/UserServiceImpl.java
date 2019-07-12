@@ -63,8 +63,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public Optional<UserInfo> getById(long userId) {
-    return userRedisManage.multiGet(Lists.newArrayList(userId))
-        .stream().findFirst();
+    return Optional.ofNullable(userMapper.getById(userId));
   }
 
   @Override
