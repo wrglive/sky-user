@@ -46,7 +46,7 @@ public class UserController {
   }
 
   @GetMapping("/get.json")
-  @CheckToken(isChek = false)
+  @CheckToken(isCheck = false)
   public UserInfo get(long id) {
     return userService.getById(id).orElseThrow(() -> new SkyException(SkyUserExceptionEnum.USER_IS_EXIST));
   }
