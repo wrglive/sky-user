@@ -3,7 +3,7 @@ package com.marshall.sky.user.controller;
 import com.marshall.sky.core.enums.GenderEnum;
 import com.marshall.sky.core.enums.StatusEnum;
 import com.marshall.sky.core.exception.SkyException;
-import com.marshall.sky.core.token.CheckToken;
+import com.marshall.sky.core.token.CheckAuth;
 import com.marshall.sky.user.exception.SkyUserExceptionEnum;
 import com.marshall.sky.user.model.UserInfo;
 import com.marshall.sky.user.service.UserService;
@@ -46,7 +46,7 @@ public class UserController {
   }
 
   @GetMapping("/get.json")
-  @CheckToken(isCheck = false)
+  @CheckAuth(isCheckToken = false)
   public UserInfo get(long id) {
     return userService.getById(id).orElseThrow(() -> new SkyException(SkyUserExceptionEnum.USER_IS_EXIST));
   }
