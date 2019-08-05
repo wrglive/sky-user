@@ -22,23 +22,23 @@ public interface UserMapper {
       + "(#{userId},"
       + "#{nickName}, "
       //下面type 写的是class 这里也写得class 找bug找了半天，fuck
-      + "#{gender,typeHandler = com.marshall.sky.core.mybatis.EnumTransformHandler}, "
+      + "#{gender}, "
       + "#{createAt}, "
       + "#{avatarId}, "
-      + "#{status,typeHandler = com.marshall.sky.core.mybatis.EnumTransformHandler})")
+      + "#{status})")
   boolean create(UserInfo userInfo);
 
   @Select("select * from user_info limit #{offset}, #{limit}")
   @Results({
-      @Result(property = "gender", column = "gender", typeHandler = com.marshall.sky.core.mybatis.EnumTransformHandler.class, javaType = GenderEnum.class),
-      @Result(property = "status", column = "status", typeHandler = com.marshall.sky.core.mybatis.EnumTransformHandler.class, javaType = StatusEnum.class)
+      @Result(property = "gender", column = "gender", javaType = GenderEnum.class),
+      @Result(property = "status", column = "status", javaType = StatusEnum.class)
   })
   List<UserInfo> list(int limit, int offset);
 
   @Select("select * from user_info where user_id = #{userId}")
   @Results({
-      @Result(property = "gender", column = "gender", typeHandler = com.marshall.sky.core.mybatis.EnumTransformHandler.class, javaType = GenderEnum.class),
-      @Result(property = "status", column = "status", typeHandler = com.marshall.sky.core.mybatis.EnumTransformHandler.class, javaType = StatusEnum.class)
+      @Result(property = "gender", column = "gender", javaType = GenderEnum.class),
+      @Result(property = "status", column = "status", javaType = StatusEnum.class)
   })
   UserInfo getById(long userId);
 }
